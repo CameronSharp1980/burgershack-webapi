@@ -1,6 +1,6 @@
 namespace burgershack_c.Models
 {
-    public class Burger : IMenuItem
+    public class Drink : IMenuItem
     {
         public int Id { get; set; }
         public string Name { get; set; }

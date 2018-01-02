@@ -8,10 +8,10 @@ using Microsoft.AspNetCore.Mvc;
 namespace burgershack_c.Controllers
 {
     [Route("api/[controller]")]
-    public class BurgersController : Controller
+    public class DrinksController : Controller
     {
         //AGAIN VERY BAD!!!!!!------------
-        public List<IMenuItem> Burgers = Program.Burgers;
+        public List<IMenuItem> Drinks = Program.Drinks;
 
         //--------------------------------
 
@@ -19,22 +19,22 @@ namespace burgershack_c.Controllers
         [HttpGet]
         public IEnumerable<IMenuItem> Get()
         {
-            return Burgers;
+            return Drinks;
         }
 
         // GET api/values/5
         [HttpGet("{id}")]
         public IMenuItem Get(int id)
         {
-            return Burgers.FirstOrDefault(burger => burger.Id == id);
+            return Drinks.FirstOrDefault(drink => drink.Id == id);
         }
 
         // POST api/values
         [HttpPost]
-        public IEnumerable<IMenuItem> Post([FromBody]IMenuItem burger)
+        public IEnumerable<IMenuItem> Post([FromBody]IMenuItem drink)
         {
-            Burgers.Add(burger);
-            return Burgers;
+            Drinks.Add(drink);
+            return Drinks;
         }
 
         // PUT api/values/5
