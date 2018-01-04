@@ -11,17 +11,17 @@ namespace burgershack_c.Controllers
     public class MenusController : Controller
     {
         //AGAIN VERY BAD!!!!!!------------
-        public List<IMenuItem> Burgers = Program.Burgers;
-        public List<IMenuItem> Drinks = Program.Drinks;
-        public List<IMenuItem> Sides = Program.Sides;
+        // public List<IMenuItem> Burgers = Program.Burgers;
+        // public List<IMenuItem> Drinks = Program.Drinks;
+        // public List<IMenuItem> Sides = Program.Sides;
 
         public Menu Menu = new Menu();
 
         public MenusController()
         {
-            Menu.Items.Add("burgers", Burgers);
-            Menu.Items.Add("drinks", Drinks);
-            Menu.Items.Add("sides", Sides);
+            // Menu.Items.Add("burgers", Burgers);
+            // Menu.Items.Add("drinks", Drinks);
+            // Menu.Items.Add("sides", Sides);
         }
         //--------------------------------
 

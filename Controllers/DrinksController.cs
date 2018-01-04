@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using burgershack_c.Models;
+using burgershack_c.Repositories;
 using Microsoft.AspNetCore.Mvc;
 
 namespace burgershack_c.Controllers
@@ -10,43 +11,50 @@ namespace burgershack_c.Controllers
     [Route("api/[controller]")]
     public class DrinksController : Controller
     {
-        //AGAIN VERY BAD!!!!!!------------
-        public List<IMenuItem> Drinks = Program.Drinks;
 
-        //--------------------------------
+        private readonly DrinkRepository db;
+        public DrinksController()
+        {
+            db = new DrinkRepository();
+        }
 
         // GET api/values
         [HttpGet]
-        public IEnumerable<IMenuItem> Get()
+        public IEnumerable<Drink> Get()
         {
-            return Drinks;
+            return db.GetAll();
         }
 
         // GET api/values/5
         [HttpGet("{id}")]
-        public IMenuItem Get(int id)
+        public Drink Get(int id)
         {
-            return Drinks.FirstOrDefault(drink => drink.Id == id);
+            return db.GetById(id);
         }
 
         // POST api/values
         [HttpPost]
-        public IEnumerable<IMenuItem> Post([FromBody]IMenuItem drink)
+        public Drink Post([FromBody]Drink drink)
         {
-            Drinks.Add(drink);
-            return Drinks;
+            return db.Add(drink);
         }
 
         // PUT api/values/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody]string value)
+        public Drink Put(int id, [FromBody]Drink drink)
         {
+            if (ModelState.IsValid)
+            {
+                return db.GetOneByIdAndUpdate(id, drink);
+            }
+            return null;
         }
 
         // DELETE api/values/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public void Delete(int id, [FromBody] Drink drink)
         {
+            // return db.GetOneByIdAndDelete(id, drink);
         }
     }
 }
